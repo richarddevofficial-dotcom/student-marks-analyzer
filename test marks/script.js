@@ -6,15 +6,16 @@ const students = [
   { name: "Elsa", marks: [70, 73, 68, 75] },
 ];
 
+//looping through student
 for (let i = 0; i < students.length; i++) {
   let total = 0;
-
+  // looping throught marks
   for (let j = 0; j < students[i].marks.length; j++) {
     total += students[i].marks[j];
   }
-
+  // getting the average
   let average = total / students[i].marks.length;
-
+  // deciding the grading
   let grade = "";
   if (average >= 80) grade = "A";
   else if (average >= 70) grade = "B";
