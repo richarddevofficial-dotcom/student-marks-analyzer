@@ -6,13 +6,7 @@ const students = [
   { name: "Elsa", marks: [70, 73, 68, 75] },
 ];
 
-function generateReport() {
-  const reportDiv = document.getElementById("report");
-  const summaryDiv = document.getElementById("summary");
-
-  reportDiv.innerHTML = "";
-  summaryDiv.innerHTML = "";
-
+function generateReport(students) {
   let passCount = 0;
   let failCount = 0;
   let topStudent = "";
@@ -30,7 +24,7 @@ function generateReport() {
 
     let average = total / student.marks.length;
 
-    let grade = "";
+    let grade;
     if (average >= 80) grade = "A";
     else if (average >= 70) grade = "B";
     else if (average >= 60) grade = "C";
@@ -52,27 +46,17 @@ function generateReport() {
       lowStudent = student.name;
     }
 
-    // Display student result
-    let div = document.createElement("div");
-    div.className = "student";
-
-    div.innerHTML = `
-      <strong>${student.name}</strong>:
-      Avg ${average.toFixed(2)} |
-      Grade ${grade} |
-      <span class="${status === "PASS" ? "pass" : "fail"}">${status}</span>
-    `;
-
-    reportDiv.appendChild(div);
+    console.log(
+      `${student.name} | Avg: ${average.toFixed(2)} | Grade: ${grade} | ${status}`
+    );
   }
 
-  // Summary
-  summaryDiv.innerHTML = `
-    <h3>Class Summary</h3>
-    <p>Students: ${students.length}</p>
-    <p>Pass: ${passCount}</p>
-    <p>Fail: ${failCount}</p>
-    <p>Top Student: ${topStudent} (${topAverage.toFixed(2)})</p>
-    <p>Lowest Student: ${lowStudent} (${lowAverage.toFixed(2)})</p>
-  `;
+  console.log("\n--- Class Summary ---");
+  console.log(`Students: ${students.length}`);
+  console.log(`Pass: ${passCount}`);
+  console.log(`Fail: ${failCount}`);
+  console.log(`Top Student: ${topStudent} (${topAverage.toFixed(2)})`);
+  console.log(`Lowest Student: ${lowStudent} (${lowAverage.toFixed(2)})`);
 }
+
+generateReport(students);
