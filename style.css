@@ -1,48 +1,64 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
+/* Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
+/* Page layout */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: #fff;
+}
+
+/* Container */
 .container {
-  max-width: 700px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-h1 {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2.5rem 3rem;
+  border-radius: 14px;
   text-align: center;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
+/* Title */
+.container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+}
+
+/* Button */
 button {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
+  background: #ffcc00;
+  color: #1e3c72;
+  transition: all 0.25s ease;
 }
 
-.student {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+button:hover {
+  background: #ffd633;
+  transform: translateY(-2px);
 }
 
-.pass {
-  color: green;
-  font-weight: bold;
+button:active {
+  transform: translateY(0);
 }
 
-.fail {
-  color: red;
-  font-weight: bold;
-}
-
-#summary {
-  margin-top: 20px;
-  padding: 15px;
-  background: #f0f0f0;
-  border-radius: 6px;
+/* Helper text (optional) */
+.note {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
 }
