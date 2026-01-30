@@ -7,56 +7,46 @@ const students = [
 ];
 
 function generateReport(students) {
-  let passCount = 0;
-  let failCount = 0;
-  let topStudent = "";
-  let topAverage = 0;
-  let lowStudent = "";
-  let lowAverage = 100;
+  let pass = 0, fail = 0;
+  let topAvg = 0, lowAvg = 100;
+  let topStudent = "", lowStudent = "";
 
-  for (let i = 0; i < students.length; i++) {
-    let student = students[i];
+  for (let student of students) {
     let total = 0;
+    for (let mark of student.marks) total += mark;
 
-    for (let j = 0; j < student.marks.length; j++) {
-      total += student.marks[j];
-    }
+    let avg = total / student.marks.length;
 
-    let average = total / student.marks.length;
+    let grade =
+      avg >= 80 ? "A" :
+      avg >= 70 ? "B" :
+      avg >= 60 ? "C" :
+      avg >= 50 ? "D" : "E";
 
-    let grade;
-    if (average >= 80) grade = "A";
-    else if (average >= 70) grade = "B";
-    else if (average >= 60) grade = "C";
-    else if (average >= 50) grade = "D";
-    else grade = "E";
+    let status = avg >= 60 ? "PASS" : "FAIL";
+    status === "PASS" ? pass++ : fail++;
 
-    let status = average >= 60 ? "PASS" : "FAIL";
-
-    if (status === "PASS") passCount++;
-    else failCount++;
-
-    if (average > topAverage) {
-      topAverage = average;
+    if (avg > topAvg) {
+      topAvg = avg;
       topStudent = student.name;
     }
 
-    if (average < lowAverage) {
-      lowAverage = average;
+    if (avg < lowAvg) {
+      lowAvg = avg;
       lowStudent = student.name;
     }
 
-    console.log(
-      `${student.name} | Avg: ${average.toFixed(2)} | Grade: ${grade} | ${status}`
-    );
+    console.log(`${student.name} | Avg: ${avg.toFixed(2)} | Grade: ${grade} | ${status}`);
   }
 
-  console.log("\n--- Class Summary ---");
-  console.log(`Students: ${students.length}`);
-  console.log(`Pass: ${passCount}`);
-  console.log(`Fail: ${failCount}`);
-  console.log(`Top Student: ${topStudent} (${topAverage.toFixed(2)})`);
-  console.log(`Lowest Student: ${lowStudent} (${lowAverage.toFixed(2)})`);
+  console.log("---- SUMMARY ----");
+  console.log("Students:", students.length);
+  console.log("Pass:", pass);
+  console.log("Fail:", fail);
+  console.log(`Top Student: ${topStudent} (${topAvg.toFixed(2)})`);
+  console.log(`Lowest Student: ${lowStudent} (${lowAvg.toFixed(2)})`);
 }
 
-generateReport(students);
+function run() {
+  generateReport(students);
+}
